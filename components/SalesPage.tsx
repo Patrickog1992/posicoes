@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
-import { Check, ShieldCheck, Lock, Star, AlertTriangle, ChevronDown, ChevronUp, HelpCircle, Bell } from 'lucide-react';
+import { Check, ShieldCheck, Lock, Star, AlertTriangle, ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 
 const mockupSlides = [
   { 
