@@ -130,7 +130,7 @@ export const SalesPage: React.FC = () => {
 
       {/* Header / Hero */}
       <header className="bg-red-600 text-white p-6 text-center pt-2">
-        <h1 className="text-2xl font-bold uppercase tracking-wide mb-2 animate-bounce">
+        <h1 className="text-2xl font-bold uppercase tracking-wide mb-2">
           SEU MANUAL COM AS 50 POSIÇÕES SECRETAS ESTÁ PRONTO !
         </h1>
       </header>

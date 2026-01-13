@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QuizStep } from './components/QuizStep';
 import { Button } from './components/Button';
 import { ProgressBar } from './components/ProgressBar';
@@ -7,9 +7,26 @@ import { SalesPage } from './components/SalesPage';
 import { StepType } from './types';
 import { Check, Star } from 'lucide-react';
 
+// Lista de todas as imagens para carregar em background
+const imagesToPreload = [
+  "https://i.imgur.com/zG4MT7C.jpeg", // Autora
+  "https://quentesecarentes.com.br/wp-content/uploads/2019/10/banner29112016-009.jpg", // Banner Sales
+  "https://static1.minhavida.com.br/articles/0a/38/77/3a/9-posicao-sexual-article_m-1.jpg", // Slide 1
+  "https://i0.statig.com.br/bancodeimagens/el/8r/9q/el8r9qfvthpdr6usg7c4h1tsp.jpg", // Slide 2
+  "https://static1.minhavida.com.br/articles/49/ba/93/e0/5-posicao-sexual-article-1.jpg" // Slide 3
+];
+
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<Record<number, any>>({});
+
+  // Preload images on mount
+  useEffect(() => {
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   const nextStep = () => {
     window.scrollTo(0, 0);
@@ -39,7 +56,15 @@ const App: React.FC = () => {
               <h1 className="text-2xl font-bold text-gray-900 leading-tight">
                 Surpreenda seu parceiro inovando com posições nunca vistas antes
               </h1>
-              <img src="https://i.imgur.com/Fgw1OG5.jpeg" alt="Intro" className="w-full rounded-2xl shadow-lg" />
+              {/* Imagem com prioridade alta de carregamento */}
+              <img 
+                src="https://i.imgur.com/Fgw1OG5.jpeg" 
+                alt="Intro" 
+                className="w-full rounded-2xl shadow-lg" 
+                width="400"
+                height="300"
+                style={{ contentVisibility: 'auto' }}
+              />
               <div className="space-y-4 text-left">
                 <p className="text-gray-800 text-lg font-medium">😈 Essas 50 posições secretas vão fazer ele esquecer todas as outras mulheres e desejar apenas você</p>
                 <p className="text-gray-800 text-lg font-medium">🔥 Ele vai implorar pela sua atenção e pensar em você 24h por dia</p>
@@ -54,7 +79,7 @@ const App: React.FC = () => {
           <QuizStep onNext={nextStep}>
             <div className="space-y-6 text-center">
               <h2 className="text-xl font-bold text-gray-900">Conheça sua professora: Ana Julia <br/><span className="text-red-600 font-normal text-base">Criadora do MANUAL DAS POSIÇÕES SECRETAS</span></h2>
-              <img src="https://i.imgur.com/zG4MT7C.jpeg" alt="Ana Julia" className="w-full rounded-2xl shadow-lg" />
+              <img src="https://i.imgur.com/zG4MT7C.jpeg" alt="Ana Julia" className="w-full rounded-2xl shadow-lg" loading="eager" />
               <p className="text-gray-700">Uma sexóloga que se tornou uma das profissionais mais reconhecidas e respeitadas do país.</p>
               <div className="bg-red-50 p-4 rounded-xl">
                  <p className="font-bold text-red-700">Sexóloga e especialista em sexualidade feminina</p>
@@ -172,7 +197,7 @@ const App: React.FC = () => {
           <QuizStep onNext={nextStep}>
             <div className="space-y-6 text-center">
               <h2 className="text-2xl font-black text-red-600 uppercase">SE VOCÊ NÃO FAZ ESSAS 50 POSIÇÕES, OUTRA FARÁ POR VOCÊ.</h2>
-              <img src="https://quentesecarentes.com.br/wp-content/uploads/2019/10/banner29112016-009.jpg" alt="Casal na cama" className="w-full rounded-2xl shadow-lg" />
+              <img src="https://quentesecarentes.com.br/wp-content/uploads/2019/10/banner29112016-009.jpg" alt="Casal na cama" className="w-full rounded-2xl shadow-lg" loading="eager" />
               <p className="text-gray-800 font-bold bg-yellow-100 p-2 rounded">Enquanto você tenta ser a certinha… ele deseja Outra Mulher que sabe ser PUTA na hora CERTA</p>
             </div>
           </QuizStep>
