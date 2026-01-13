@@ -74,7 +74,7 @@ export const SalesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col animate-fade-in bg-white pb-20">
+    <div className="flex flex-col animate-fade-in bg-white pb-10">
       {/* Header / Hero */}
       <div className="bg-red-600 text-white p-6 text-center rounded-b-3xl shadow-xl mb-8 relative overflow-hidden">
         <div className="relative z-10">
@@ -193,13 +193,6 @@ export const SalesPage: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Sticky CTA */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] z-50 sm:max-w-md sm:mx-auto">
-        <Button variant="primary" onClick={() => window.open('https://pay.kiwify.com.br/placeholder', '_blank')}>
-          QUERO MEU ACESSO AGORA
-        </Button>
       </div>
     </div>
   );
