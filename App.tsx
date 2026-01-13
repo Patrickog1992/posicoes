@@ -28,8 +28,12 @@ const App: React.FC = () => {
     });
   }, []);
 
+  // Scroll to top whenever step changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [currentStep]);
+
   const nextStep = () => {
-    window.scrollTo(0, 0);
     setCurrentStep(prev => prev + 1);
   };
 

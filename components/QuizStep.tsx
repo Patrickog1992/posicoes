@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from './Button';
 
 interface QuizStepProps {
@@ -14,9 +14,20 @@ export const QuizStep: React.FC<QuizStepProps> = ({
   showButton = true, 
   buttonText = "Continuar" 
 }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Força o scroll para o topo do container interno
+    if (contentRef.current) {
+      contentRef.current.scrollTop = 0;
+    }
+    // Garante também o scroll da janela
+    window.scrollTo(0, 0);
+  }, [children]);
+
   return (
     <div className="flex flex-col h-full min-h-[60vh] justify-between animate-fade-in">
-      <div className="flex-1 overflow-y-auto custom-scrollbar">
+      <div ref={contentRef} className="flex-1 overflow-y-auto custom-scrollbar">
         {children}
       </div>
       
