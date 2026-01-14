@@ -21,6 +21,13 @@ const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<Record<number, any>>({});
 
+  // Disparar o Pixel PageView ao carregar o App
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'PageView');
+    }
+  }, []);
+
   // Preload images on mount
   useEffect(() => {
     imagesToPreload.forEach((src) => {
