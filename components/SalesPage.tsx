@@ -6,6 +6,7 @@ import { SalesNotification } from './SalesNotification';
 export const SalesPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentPositionIndex, setCurrentPositionIndex] = useState(0);
 
   const testimonials = [
     {
@@ -34,6 +35,12 @@ export const SalesPage: React.FC = () => {
     }
   ];
 
+  const positions = [
+    { img: "https://static1.minhavida.com.br/articles/0a/38/77/3a/9-posicao-sexual-article_m-1.jpg", name: "O Trono da Deusa" },
+    { img: "https://i0.statig.com.br/bancodeimagens/el/8r/9q/el8r9qfvthpdr6usg7c4h1tsp.jpg", name: "A Submissão Profunda" },
+    { img: "https://static1.minhavida.com.br/articles/49/ba/93/e0/5-posicao-sexual-article-1.jpg", name: "O Êxtase Absoluto" }
+  ];
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
@@ -43,11 +50,16 @@ export const SalesPage: React.FC = () => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 4000); // Troca a cada 4 segundos
 
+    const positionInterval = setInterval(() => {
+      setCurrentPositionIndex((prev) => (prev + 1) % positions.length);
+    }, 3000); // Troca a imagem do celular a cada 3 segundos
+
     return () => {
       clearInterval(timer);
       clearInterval(testimonialInterval);
+      clearInterval(positionInterval);
     };
-  }, []);
+  }, [positions.length]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -63,12 +75,6 @@ export const SalesPage: React.FC = () => {
     { title: "BÔNUS 5 — Como Reacender o Desejo em Relacionamentos Mornos", price: "R$77,00", desc: "Estratégias práticas para quebrar a rotina, recuperar a tensão e fazer ele voltar a te olhar com o mesmo desejo do início." },
     { title: "BÔNUS 6 — Perfumes e Gatilhos Sensoriais", price: "R$37,00", desc: "Como usar aromas, ambientes e estímulos sutis para criar associações emocionais profundas e aumentar a atração." },
     { title: "BÔNUS 7 — Grupo VIP de Alunas", price: "R$97,00", desc: "Acesso a um grupo fechado com dicas extras, conteúdos complementares e suporte para acelerar seus resultados." }
-  ];
-
-  const positions = [
-    { img: "https://static1.minhavida.com.br/articles/0a/38/77/3a/9-posicao-sexual-article_m-1.jpg", name: "O Trono da Deusa" },
-    { img: "https://i0.statig.com.br/bancodeimagens/el/8r/9q/el8r9qfvthpdr6usg7c4h1tsp.jpg", name: "A Submissão Profunda" },
-    { img: "https://static1.minhavida.com.br/articles/49/ba/93/e0/5-posicao-sexual-article-1.jpg", name: "O Êxtase Absoluto" }
   ];
 
   return (
@@ -87,19 +93,40 @@ export const SalesPage: React.FC = () => {
         <h1 className="text-2xl font-black mb-2 uppercase leading-tight text-red-600">SEU MANUAL COM AS 50 POSIÇÕES SECRETAS ESTÁ PRONTO !</h1>
       </div>
 
-      {/* MOCKUP SECTION */}
+      {/* MOCKUP SECTION - CARROSSEL AUTOMÁTICO */}
       <div className="px-6 mb-10">
         <div className="mx-auto max-w-[280px] bg-gray-900 rounded-[2.5rem] p-3 shadow-2xl border-4 border-gray-800 relative">
             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-xl z-10"></div>
-            <div className="bg-white rounded-[2rem] overflow-hidden h-full flex flex-col gap-2 p-2 pt-8 bg-gray-100 h-[500px] overflow-y-auto custom-scrollbar">
-                {positions.map((pos, idx) => (
-                    <div key={idx} className="relative rounded-xl overflow-hidden shadow-md group shrink-0">
-                        <img src={pos.img} alt={pos.name} className="w-full h-40 object-cover" />
-                        <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs font-bold p-2 text-center">
-                            {pos.name}
+            
+            <div className="bg-gray-100 rounded-[2rem] overflow-hidden h-[500px] w-full relative">
+                {/* Container que desliza */}
+                <div 
+                    className="flex h-full transition-transform duration-700 ease-in-out" 
+                    style={{ transform: `translateX(-${currentPositionIndex * 100}%)` }}
+                >
+                    {positions.map((pos, idx) => (
+                        <div key={idx} className="min-w-full h-full p-4 pt-12 flex flex-col justify-center items-center">
+                            <div className="relative rounded-xl overflow-hidden shadow-lg w-full">
+                                <img src={pos.img} alt={pos.name} className="w-full h-auto object-cover aspect-square" />
+                                <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-sm font-bold p-3 text-center">
+                                    {pos.name}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
+
+                {/* Indicadores (Dots) */}
+                <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+                    {positions.map((_, idx) => (
+                        <div 
+                            key={idx} 
+                            className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                                idx === currentPositionIndex ? 'bg-red-600 w-4' : 'bg-gray-300'
+                            }`} 
+                        />
+                    ))}
+                </div>
             </div>
         </div>
       </div>
