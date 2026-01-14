@@ -243,7 +243,7 @@ export const SalesPage: React.FC = () => {
                 Você está recebendo <span className="font-bold text-green-700">R$442,00 de desconto</span> pra ter acesso ao conteúdo mais poderoso pra transformar sua vida sexual e dominar o poder de deixar qualquer homem aos seus pés
             </p>
 
-            <Button variant="pulse" onClick={() => window.open('https://pay.kiwify.com.br/placeholder', '_blank')} className="w-full text-sm py-4">
+            <Button variant="pulse" onClick={() => window.open('https://go.perfectpay.com.br/PPU38CQ6096', '_blank')} className="w-full text-sm py-4">
                 QUERO O MEU ACESSO AO MANUAL
                 <span className="block text-[10px] font-normal opacity-90 mt-1">(teste hoje mesmo)</span>
             </Button>
@@ -269,7 +269,7 @@ export const SalesPage: React.FC = () => {
         </div>
 
         <div className="mt-8">
-            <Button variant="pulse" onClick={() => window.open('https://pay.kiwify.com.br/placeholder', '_blank')}>
+            <Button variant="pulse" onClick={() => window.open('https://go.perfectpay.com.br/PPU38CQ6096', '_blank')}>
                 QUERO SER ÚNICA
             </Button>
         </div>
@@ -300,7 +300,7 @@ export const SalesPage: React.FC = () => {
             <li className="flex items-center gap-2"><Check className="text-red-600 shrink-0" /> 🔥 Faça ele pensar em você e querer te agradar o Tempo todo.</li>
         </ul>
         <div className="mt-8">
-            <Button variant="pulse" onClick={() => window.open('https://pay.kiwify.com.br/placeholder', '_blank')}>
+            <Button variant="pulse" onClick={() => window.open('https://go.perfectpay.com.br/PPU38CQ6096', '_blank')}>
                 QUERO DEIXAR ELE VICIADO EM MIM
             </Button>
         </div>
@@ -327,7 +327,7 @@ export const SalesPage: React.FC = () => {
                 A responsabilidade é toda minha. Você não tem nada a perder.
             </p>
 
-            <Button variant="pulse" onClick={() => window.open('https://pay.kiwify.com.br/placeholder', '_blank')} className="relative z-10">
+            <Button variant="pulse" onClick={() => window.open('https://go.perfectpay.com.br/PPU38CQ6096', '_blank')} className="relative z-10">
                 QUERO COMPRAR SEM RISCOS
             </Button>
         </div>

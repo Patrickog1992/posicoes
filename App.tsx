@@ -13,7 +13,8 @@ const imagesToPreload = [
   "https://quentesecarentes.com.br/wp-content/uploads/2019/10/banner29112016-009.jpg", // Banner Sales
   "https://static1.minhavida.com.br/articles/0a/38/77/3a/9-posicao-sexual-article_m-1.jpg", // Slide 1
   "https://i0.statig.com.br/bancodeimagens/el/8r/9q/el8r9qfvthpdr6usg7c4h1tsp.jpg", // Slide 2
-  "https://static1.minhavida.com.br/articles/49/ba/93/e0/5-posicao-sexual-article-1.jpg" // Slide 3
+  "https://static1.minhavida.com.br/articles/49/ba/93/e0/5-posicao-sexual-article-1.jpg", // Slide 3
+  "https://i.imgur.com/xQjj8N5.png" // Logo
 ];
 
 const App: React.FC = () => {
@@ -352,6 +353,9 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-white text-gray-800 font-sans max-w-md mx-auto shadow-2xl relative overflow-hidden sm:border-x sm:border-gray-100">
       {currentStep < 15 && (
          <div className="px-6 pt-6">
+           <div className="flex justify-center mb-6">
+             <img src="https://i.imgur.com/xQjj8N5.png" alt="Logo" className="w-[100px] h-[100px] object-contain" />
+           </div>
            {currentStep < 14 && <ProgressBar progress={((currentStep + 1) / 14) * 100} />}
          </div>
       )}
